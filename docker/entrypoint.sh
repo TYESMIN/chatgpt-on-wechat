@@ -10,6 +10,7 @@ CHATGPT_ON_WECHAT_EXEC=${CHATGPT_ON_WECHAT_EXEC:-""}
 
 OPEN_AI_API_KEY=${OPEN_AI_API_KEY:-""}
 OPEN_AI_PROXY=${OPEN_AI_PROXY:-""}
+OPEN_AI_MODEL=${OPEN_AI_MODEL:-""}
 SINGLE_CHAT_PREFIX=${SINGLE_CHAT_PREFIX:-""}
 SINGLE_CHAT_REPLY_PREFIX=${SINGLE_CHAT_REPLY_PREFIX:-""}
 GROUP_CHAT_PREFIX=${GROUP_CHAT_PREFIX:-""}
@@ -17,6 +18,7 @@ GROUP_NAME_WHITE_LIST=${GROUP_NAME_WHITE_LIST:-""}
 IMAGE_CREATE_PREFIX=${IMAGE_CREATE_PREFIX:-""}
 CONVERSATION_MAX_TOKENS=${CONVERSATION_MAX_TOKENS:-""}
 SPEECH_RECOGNITION=${SPEECH_RECOGNITION:-""}
+VOICE_REPLY_VOICE=${VOICE_REPLY_VOICE:-""}
 CHARACTER_DESC=${CHARACTER_DESC:-""}
 EXPIRES_IN_SECONDS=${EXPIRES_IN_SECONDS:-""}
 
@@ -51,6 +53,10 @@ if [ "$OPEN_AI_PROXY" != "" ] ; then
     sed -i "s/\"proxy\".*,$/\"proxy\": \"$OPEN_AI_PROXY\",/" $CHATGPT_ON_WECHAT_CONFIG_PATH
 fi
 
+if [ "$OPEN_AI_MODEL" != "" ] ; then
+    sed -i "s/\"model\".*,$/\"model\": \"$OPEN_AI_MODEL\",/" $CHATGPT_ON_WECHAT_CONFIG_PATH
+fi
+
 if [ "$SINGLE_CHAT_PREFIX" != "" ] ; then
     sed -i "s/\"single_chat_prefix\".*,$/\"single_chat_prefix\": $SINGLE_CHAT_PREFIX,/" $CHATGPT_ON_WECHAT_CONFIG_PATH
 fi
@@ -79,12 +85,16 @@ if [ "$SPEECH_RECOGNITION" != "" ] ; then
     sed -i "s/\"speech_recognition\".*,$/\"speech_recognition\": $SPEECH_RECOGNITION,/" $CHATGPT_ON_WECHAT_CONFIG_PATH
 fi
 
-if [ "$CHARACTER_DESC" != "" ] ; then
-    sed -i "s/\"character_desc\".*,$/\"character_desc\": \"$CHARACTER_DESC\",/" $CHATGPT_ON_WECHAT_CONFIG_PATH
+if [ "$VOICE_REPLY_VOICE" != "" ] ; then
+    sed -i "s/\"voice_reply_voice\".*,$/\"voice_reply_voice\": $VOICE_REPLY_VOICE,/" $CHATGPT_ON_WECHAT_CONFIG_PATH
 fi
 
 if [ "$EXPIRES_IN_SECONDS" != "" ] ; then
-    sed -i "s/\"expires_in_seconds\".*$/\"expires_in_seconds\": $EXPIRES_IN_SECONDS/" $CHATGPT_ON_WECHAT_CONFIG_PATH
+    sed -i "s/\"expires_in_seconds\".*,$/\"expires_in_seconds\": $EXPIRES_IN_SECONDS,/" $CHATGPT_ON_WECHAT_CONFIG_PATH
+fi
+
+if [ "$CHARACTER_DESC" != "" ] ; then
+    sed -i "s/\"character_desc\".*$/\"character_desc\": \"$CHARACTER_DESC\"/" $CHATGPT_ON_WECHAT_CONFIG_PATH
 fi
 
 # go to prefix dir
