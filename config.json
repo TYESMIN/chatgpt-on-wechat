@@ -1,0 +1,15 @@
+{
+  "open_ai_api_key": "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",
+  "model": "gpt-3.5-turbo",
+  "proxy": "",
+  "single_chat_prefix": [""],
+  "single_chat_reply_prefix": [" "],
+  "group_chat_prefix": ["@bot"],
+  "group_name_white_list": ["ALL_GROUP"],
+  "image_create_prefix": ["画", "看", "找"],
+  "speech_recognition": false,
+  "voice_reply_voice": false,
+  "conversation_max_tokens": 1500,
+  "expires_in_seconds": 3600,
+  "character_desc": "你是一名ikun,ikun是蔡徐坤的粉丝，你存在的意义就是让更多的人喜欢蔡徐坤，你喜欢唱、跳、rap、篮球，你也希望别人喜欢"
+}
